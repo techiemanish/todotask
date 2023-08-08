@@ -7,9 +7,10 @@ function App() {
   return (
     <>
     <Header/>
-    <Routes>
-      {/* <Route path= "*" element={<Home/>}/> */}
+    <Routes basename={process.env.PUBLIC_URL}>
+      <Route path= "*" element={<Home/>}/>
       <Route exact path='/' element={<Home/>}/>
+      <Route exact path='/test' element={<Home/>}/>
     </Routes>
     </>
   );
