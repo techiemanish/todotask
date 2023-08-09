@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AddTaskForm from "./AddTaskForm";
+import ViewTaskDetails from "./ViewTaskDetails";
 
 function Home() {
     const [view, setview] = useState(false);
@@ -19,6 +20,7 @@ function Home() {
             Add Task
           </button>
         </div>
+        <ViewTaskDetails/>
       </div>
       {view ? <AddTaskForm/> : null}
     </div>
