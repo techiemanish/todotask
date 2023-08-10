@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
+import { toast } from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 function AddDescription(props) {
+    const descriptionState = useSelector(state=>state.rootReducer);
+    const {descriptionKey} = descriptionState;
     const [description, setDescription] = useState('');
 
     const handleDescriptionChange = (event) => {
@@ -9,17 +13,22 @@ function AddDescription(props) {
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      console.log('Description:', description);
+      let data = localStorage.getItem("myDB");
+      let parsedData=JSON.parse(data);
+      let arr = parsedData[descriptionKey];
+      arr.push(description);
+      localStorage.setItem("myDB",JSON.stringify(parsedData));
+      toast.success("Description added. Successfully!")
       setDescription('');
     };
   
     return (
       <div className="w-full md:w-1/2 p-4">
       <div className="w-full max-w-xs">
-        <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form onSubmit={handleSubmit} className="bg-yellow-300 shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
-              Description
+              {descriptionKey.split("_").join(" ")}
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -28,6 +37,7 @@ function AddDescription(props) {
               placeholder="Enter description"
               value={description}
               onChange={handleDescriptionChange}
+              required
             />
           </div>
           <div className="flex items-center justify-center">
