@@ -4,6 +4,7 @@ import ViewTaskDetails from "./ViewTaskDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { setDescriptionView, setTaskView } from "../redux/actions";
 import AddDescription from "./AddDescription";
+import ViewDescription from "./ViewDescription";
 
 function Home() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function Home() {
         }
     }
   return (
+    <>
     <div className="flex flex-col md:flex-row">
       <div className="w-full md:w-1/2 p-4">
         <div className="order-2 md:order-1 md:w-1/2 md:p-4">
@@ -31,6 +33,8 @@ function Home() {
       {taskView ? <AddTaskForm/> : null}
       {descriptionView ? <AddDescription/> : null}
     </div>
+    {descriptionView ? <ViewDescription/> : null}
+    </>
   );
 }
 
