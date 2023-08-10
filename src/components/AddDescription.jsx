@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function AddDescription() {
+function AddDescription(props) {
     const [description, setDescription] = useState('');
 
     const handleDescriptionChange = (event) => {

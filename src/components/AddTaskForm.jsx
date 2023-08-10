@@ -11,16 +11,16 @@ const handleTaskChange = (event) => {
 const handleSubmit = (event) => {
   event.preventDefault();
   // console.log('Task:', task);
-  if(localStorage.getItem("db") === null){
-    let attr = task.replace(/ /g, '');
+  if(localStorage.getItem("myDB") === null){
+    let attr = task.replace(/ /g, '_');
     let obj = {}
     obj[attr] = []; 
-    localStorage.setItem("db",JSON.stringify(obj));
+    localStorage.setItem("myDB",JSON.stringify(obj));
     toast.success("Task added Successfully!")
   }
   else{
-    let attr = task.replace(/ /g, '');
-    let data = localStorage.getItem("db");
+    let attr = task.replace(/ /g, '_');
+    let data = localStorage.getItem("myDB");
     let parsedData = JSON.parse(data);
     let flag = false;
     for(let i in parsedData){
@@ -32,7 +32,7 @@ const handleSubmit = (event) => {
       toast.error("Task already exist!")
     }else{
       parsedData[attr] = [];
-      localStorage.setItem("db",JSON.stringify(parsedData));
+      localStorage.setItem("myDB",JSON.stringify(parsedData));
       toast.success("Task added Successfully!")
     }
   }
