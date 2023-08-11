@@ -4,7 +4,7 @@ function Header() {
   const [animationActive, setAnimationActive] = useState(true);
 
   const handleResetClick = () => {
-    const userConfirmed = window.confirm("Are you sure you want to reset?");
+    const userConfirmed = window.confirm("Are you sure you want to reset all your tasks?");
     if (userConfirmed) {
       localStorage.removeItem("myDB");
       window.location.reload();
@@ -24,7 +24,7 @@ function Header() {
       <h1
         className={`text-2xl font-semibold ${animationActive ? 'animate-pulse' : ''}`}
       >
-        Todo Task
+        Task Tracker
       </h1>
       <button
         className="absolute top-4 right-4 px-3 py-1 text-lg text-white bg-red-500 hover:bg-red-700 font-semibold rounded-lg"
