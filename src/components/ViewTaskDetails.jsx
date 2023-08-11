@@ -10,14 +10,11 @@ function ViewTaskDetails() {
   const descriptionView = useSelector(state => state.rootReducer.taskDescription);
 
   const handleClick = (key, value) => () => {
-    if(descriptionView){
-      dispatch(setDescriptionView(false));
-    }
-    else{
+    dispatch(setDescriptionView(true,key,value));
+    if(!descriptionView){
       dispatch(setDescriptionView(true,key,value));
       dispatch(setTaskView(false));
     }
-
   }
 
   if (parsedData !== null) {
